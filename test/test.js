@@ -8,6 +8,7 @@ require('chai')
   .should()
 
 contract('dBank', ([deployer, user]) => {
+  console.log("see this the user is here: ", user)
   let dbank, token
   const interestPerSecond = 31668017 //(10% APY) for min. deposit (0.01 ETH)
 
@@ -20,11 +21,11 @@ contract('dBank', ([deployer, user]) => {
   describe('testing token contract...', () => {
     describe('success', () => {
       it('checking token name', async () => {
-        expect(await token.name()).to.be.eq('Decentralized Bank Currency')
+        expect(await token.name()).to.be.eq('NeonTimes')
       })
 
       it('checking token symbol', async () => {
-        expect(await token.symbol()).to.be.eq('DBC')
+        expect(await token.symbol()).to.be.eq('NTC')
       })
 
       it('checking token initial total supply', async () => {
@@ -56,6 +57,7 @@ contract('dBank', ([deployer, user]) => {
       })
 
       it('balance should increase', async () => {
+        console.log("check the user here: ", user, "\ncheck the balance here: ", dbank.etherBalanceOf(user));
         expect(Number(await dbank.etherBalanceOf(user))).to.eq(10**16)
       })
 
